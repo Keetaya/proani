@@ -1,25 +1,21 @@
 class Project {
-  final String title; //ชื่อโครงการขอรับบริจาค
-  final String description;//คำอธิบายเกี่ยวกับโครงการ
-  final String time;
+  final String title; //ชื่อ
+  final String description;//คำอธิบาย
+  final String scientific_name;
   final String place;
-  final int targetAmount; //ยอดเงินขอรับบริจาค
-  final int duration; //ระยะเวลาโครงการ
-  final int receiveAmount; //จำนวนเงินที่ได้รับบริจาคมาแล้ว
-  final int doneteCount; //จำนวนครั้งที่มีการบริจาคเข้ามา
+  final int remaining; //จำนวนที่เหลืออยู่
+  final int remaininginThai; //จำนวนที่เหลืออยู่ในประเทศไทย
   final String imagaUrl;
-
-  //url ของภาพ
+  final String detail;
   Project({
     required this.title,
     required this.description,
-    required this.targetAmount,
-    required this.duration,
-    required this.receiveAmount,
-    required this.doneteCount,
+    required this.remaining,
+    required this.remaininginThai,
     required this.imagaUrl,
-    required this.time, 
+    required this.scientific_name,
     required this.place,
+    required this.detail,
   });
 
 }

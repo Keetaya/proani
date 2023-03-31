@@ -23,12 +23,12 @@ class ProjectDetailsPage extends StatelessWidget {
     );
 
     var formatter = NumberFormat('#,###,000');
-    var target = formatter.format(project.targetAmount);
+    var target = formatter.format(project.remaining);
     var percentText =
-    ((project.receiveAmount / project.targetAmount) * 100)
+    ((project.remaininginThai / project.remaining) * 100)
         .toStringAsFixed(0);
     var percent = int.tryParse(percentText);
-    var recieve = formatter.format(project.receiveAmount);
+    var recieve = formatter.format(project.remaininginThai);
     var cart = ' หยิบใส่รถเข็น';
     var donate = ' บริจาค';
 
@@ -51,7 +51,7 @@ class ProjectDetailsPage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.all(4.0),
+                    padding: const EdgeInsets.all(20.0),
                     child:
                     Text(
                       project.title,
@@ -59,7 +59,7 @@ class ProjectDetailsPage extends StatelessWidget {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.all(2.0),
+                    padding: const EdgeInsets.all(10.0),
                     child: Image.asset(
                       project.imagaUrl,
                       height: 240,
@@ -67,10 +67,36 @@ class ProjectDetailsPage extends StatelessWidget {
                       fit: BoxFit.cover,
                     ),
                   ),
+
                   Padding(
-                    padding: const EdgeInsets.all(2.0),
+                    padding: const EdgeInsets.all(20.0),
                     child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
+                        Text(
+                          'ชื่อวิทยาศาสตร์ : ',
+                          style: TextStyle(fontSize: 15, color: Colors.black45),
+                        ),
+                        Expanded(
+                          child: Text(
+                            project.scientific_name,
+                            style: TextStyle(fontSize: 16),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'เป็นสัตว์ป่าจำพวก : ',
+                          style: TextStyle(fontSize: 15, color: Colors.black45),
+                        ),
                         Expanded(
                           child: Text(
                             project.description,
@@ -81,32 +107,13 @@ class ProjectDetailsPage extends StatelessWidget {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.all(2.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'ระยะเวลาโครงการ ',
-                          style: TextStyle(fontSize: 15, color: Colors.black45),
-                        ),
-                        Expanded(
-                          child: Text(
-                            project.time,
-                            style: TextStyle(fontSize: 16),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(2.0),
+                    padding: const EdgeInsets.all(20.0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'พื้นที่ดำเนินโครงการ ',
+                          'พื้นที่อยู่อาศัย : ',
                           style: TextStyle(fontSize: 15, color: Colors.black45),
                         ),
                         Expanded(
@@ -117,7 +124,27 @@ class ProjectDetailsPage extends StatelessWidget {
                         ),
                       ],
                     ),
-                  )
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'ลักษณะทั่วไป : ',
+                          style: TextStyle(fontSize: 15, color: Colors.black45),
+                        ),
+                        Expanded(
+                          child: Text(
+                            project.detail,
+                            style: TextStyle(fontSize: 16),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+
 
                 ],
               ),
@@ -153,8 +180,8 @@ class ProjectDetailsPage extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text('ยอดบริจาคขณะนี้', style: TextStyle(fontSize: 18.0, color: Colors.black),),
-                                Text('$recieve บาท', style: TextStyle(fontSize: 20.0, color: Colors.redAccent,),
+                                Text('จำนวนที่เหลืออยู่ในประเทศไทย ณ ตอนนี้', style: TextStyle(fontSize: 18.0, color: Colors.black),),
+                                Text('ประมาณ $recieve ตัว', style: TextStyle(fontSize: 20.0, color: Colors.redAccent,),
                                 ),
                               ],
                             ),
@@ -170,8 +197,8 @@ class ProjectDetailsPage extends StatelessWidget {
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text('เป้าหมาย', style: descriptionStyle),
-                                Text('$target บาท', style: amountStyle),
+                                Text('จำนวนที่เหลืออยู่บนโลก ณ ตอนนี้', style: TextStyle(fontSize: 18.0, color: Colors.black),),
+                                Text('ประมาณ $target ตัว', style: amountStyle),
                               ],
                             ),
                             Text('$percentText%', style: descriptionStyle),
@@ -203,67 +230,8 @@ class ProjectDetailsPage extends StatelessWidget {
                           ],
                         ),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.all(2.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          children: [
-                            Text('${project.duration} วัน', style: descriptionStyle),
-                            Row(
-                              children: [
-                                const Icon(Icons.person, size: 14.0),
-                                Text('${project.receiveAmount}',
-                                    style: descriptionStyle),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(2.0),
-                        child: Row(
-                          children: [
-                            Expanded(
-                              child: Container(
-                                child: ElevatedButton(
-                                    onPressed: (){},
-                                    child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      crossAxisAlignment: CrossAxisAlignment.center,
-                                      children: [
-                                        Icon(Icons.favorite_border, size: 12.0,),
-                                        Text('$donate', style: TextStyle(color: Colors.white),),
-                                      ],
-                                    )
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(2.0),
-                        child: Row(
-                          children: [
-                            Expanded(
-                              child: Container(
-                                child: ElevatedButton(
-                                    onPressed: (){},
-                                    child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      crossAxisAlignment: CrossAxisAlignment.center,
-                                      children: [
-                                        Icon(Icons.shopping_cart,size: 12.0,),
-                                        Text('$cart',style: TextStyle(color: Colors.white),),
-                                      ],
-                                    )
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
+
+
                     ],
                   ),
                 ),
@@ -284,7 +252,7 @@ class ProjectDetailsPage extends StatelessWidget {
             ),
             child: Column(
               children: [
-                Text('แชร์ให้เพื่อน'),
+                Text('\nสัตว์ใกล้ศูนย์พันธุ์แล้ว\nแชร์ให้เพื่อนได้รู้'),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
