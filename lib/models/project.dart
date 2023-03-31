@@ -1,4 +1,5 @@
 class Project {
+
   final String title; //ชื่อ
   final String description;//คำอธิบาย
   final String scientific_name;
@@ -7,7 +8,10 @@ class Project {
   final int remaininginThai; //จำนวนที่เหลืออยู่ในประเทศไทย
   final String imagaUrl;
   final String detail;
-  Project({
+
+  Project(
+      {
+
     required this.title,
     required this.description,
     required this.remaining,
@@ -16,6 +20,8 @@ class Project {
     required this.scientific_name,
     required this.place,
     required this.detail,
-  });
+
+      }
+      );
 
 }

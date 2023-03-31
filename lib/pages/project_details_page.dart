@@ -230,8 +230,6 @@ class ProjectDetailsPage extends StatelessWidget {
                           ],
                         ),
                       ),
-
-
                     ],
                   ),
                 ),

@@ -455,7 +455,6 @@ class _ProjectListPageState extends State<ProjectListPage> {
       ),
     );
   }
-
   void _handleClickProjectItem(Project p) {
     print(p.remaining.toString());
 
