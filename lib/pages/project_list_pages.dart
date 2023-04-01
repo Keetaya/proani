@@ -352,7 +352,6 @@ class _ProjectListPageState extends State<ProjectListPage> {
     )
 
   ];
-  var doe = ' บริจาค';
   @override
   Widget build(BuildContext context) {
     return Scaffold(

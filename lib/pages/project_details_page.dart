@@ -29,8 +29,6 @@ class ProjectDetailsPage extends StatelessWidget {
         .toStringAsFixed(0);
     var percent = int.tryParse(percentText);
     var recieve = formatter.format(project.remaininginThai);
-    var cart = ' หยิบใส่รถเข็น';
-    var donate = ' บริจาค';
 
 
     return Scaffold(
